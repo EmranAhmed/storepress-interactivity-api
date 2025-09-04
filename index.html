@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HTML Only Interactive API</title>
+	<link rel="stylesheet" href="./global-style.css" />
+
+</head>
+
+<body>
+
+<div class="wrapper">
+	<div data-wp-interactive="counter" data-wp-context='{"count": 1}'>
+		<button data-wp-on--click="actions.decrement">-</button>
+		<span data-wp-text="state.count">1</span>
+		<span data-wp-text="state.count2">0</span>
+		<button data-wp-on--click="actions.increment">+</button>
+	</div>
+
+</div>
+
+
+<a target="_blank" href="https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/core-concepts/">Interactive API</a>
+
+<script type="module" src="./build/view-module.js"></script>
+</body>
+</html>

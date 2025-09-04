@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@use "./src/mixins" as plugin;
+
+:where([data--]) {
+  @include plugin.init();
+  & {
+    --custom-variable: 1px;
+  }
+}

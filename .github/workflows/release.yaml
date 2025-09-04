@@ -1,0 +1,63 @@
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - '**' # Push events to matching  i.e. 1.0, 20.15.10, including hierarchical tags like v1.0/beta
+      # Semver (https://semver.org/) release pattern.
+      # - '[0-9]+.[0-9]+.[0-9]+*'
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions: write-all
+
+env:
+  REPOSITORY_NAME: ${{ github.event.repository.name }}
+
+name: Release
+
+jobs:
+
+  # Build distribution release.
+  #
+  # Performs the following steps:
+  # - Checks out the repository
+  # - Setup and Install Node.js
+  # - NPM Install
+  # - Make Zip
+  # - Get Release Version
+  # - Get Release Filename
+  # - Make Release
+
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checks out the repository"
+        uses: actions/checkout@v4
+
+      - name: "Setup and Install Node.js"
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: "NPM Install"
+        run: npm install
+
+      - name: "Make Zip"
+        run: npm run plugin-zip --if-present
+
+      - name: "Get Release Version"
+        run: |
+          echo "RELEASE_TAG=$(node -p -e "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: "Get Release Filename"
+        run: |
+          echo "RELEASE_NAME=$(node -p -e "require('./package.json').name")" >> $GITHUB_ENV
+
+      - name: "Make Release"
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./${{ env.RELEASE_NAME }}.zip
+          make_latest: true
+          name: Release - v${{ env.RELEASE_TAG }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

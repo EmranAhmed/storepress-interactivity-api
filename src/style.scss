@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@use "./mixins" as plugin;
+
+$default-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+:where([data--]) {
+  font-family: $default-font;
+
+  @include plugin.init();
+
+  & {
+    --custom-variable: 1px;
+  }
+}

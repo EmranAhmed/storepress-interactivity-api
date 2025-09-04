@@ -1,0 +1,53 @@
+@property --custom-variable {
+  syntax: "<integer>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --custom-variable-2 {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+@property --custom-variable-3 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #000;
+}
+
+@property --custom-variable-4 {
+  syntax: "<length>|<percentage>|auto";
+  inherits: true;
+  initial-value: 100%;
+}
+
+@property --custom-variable-5 {
+  syntax: "true|false";
+  inherits: true;
+  initial-value: true;
+}
+
+@property --custom-variable-6 {
+  syntax: "<time>";
+  inherits: true;
+  initial-value: 500ms;
+}
+
+@mixin variables() {
+  --custom-variable: 5px;
+}
+
+@mixin base-style() {
+
+}
+
+// @use "./mixins" as plugin;
+// :where(.selector){ @include plugin.init(); }
+
+@mixin init() {
+  & {
+    @include variables();
+    @include base-style();
+  }
+}
