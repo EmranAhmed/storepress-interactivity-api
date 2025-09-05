@@ -1,5 +1,7 @@
 import { store, getContext, init } from '@wordpress/interactivity'
 
+import './style.scss'
+
 const { state } = store('myInteractivePlugin', {
 	state: {
 		isVisible: false,
