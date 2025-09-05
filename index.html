@@ -15,10 +15,6 @@
 	</script>
 	<link rel="modulepreload" href="./build/wp-interactivity.js" />
 
-	<style>
-
-	</style>
-
 </head>
 
 <body>
@@ -45,6 +41,7 @@
 			data-wp-on--click="actions.toggleActivation"
 			data-wp-bind--disabled="!state.isVisible"
 			data-wp-text="state.activationText"
+			disabled
 		>
 			activate
 		</button>
@@ -54,6 +51,8 @@
 			data-wp-class--active="state.isActive"
 			data-wp-class--inactive="!state.isActive"
 			data-wp-text="state.paragraphText"
+			class="inactive"
+			hidden="hidden"
 		>
 			this is inactive
 		</p>

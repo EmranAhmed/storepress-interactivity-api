@@ -9,6 +9,12 @@
 }
 
 @mixin base-style() {
+
+	&{
+		display: flex;
+		align-items: center;
+	}
+
 	.active {
 		color: #048504;
 	}
