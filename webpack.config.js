@@ -73,13 +73,7 @@ const moduleConfig = {
 	entry: {
 		// ...defaultModuleConfig.entry(),
 		'view-module': getFile('index.js'),
-		/*'interactivity': {
-			import: getFile('in.js'),
-			library: {
-				//name: ['wp', 'interactivity'],
-				type: 'module',
-			},
-		},*/
+		'view-module-2': getFile('index2.js'),
 	},
 
 	resolve: {

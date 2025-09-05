@@ -6,6 +6,25 @@
 	<title>HTML Only Interactive API</title>
 	<link rel="stylesheet" href="./global-style.css" />
 
+	<script type="importmap">
+		{
+		  "imports": {
+			"@wordpress/interactivity": "./build/wp-interactivity.js"
+		  }
+		}
+	</script>
+	<link rel="modulepreload" href="./build/wp-interactivity.js" />
+
+	<style>
+		.active {
+			color: green;
+		}
+
+		.inactive {
+			color: red;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -18,11 +37,41 @@
 		<button data-wp-on--click="actions.increment">+</button>
 	</div>
 
+
+	<div id="my-interactive-plugin" data-wp-interactive="myInteractivePlugin">
+		<button
+			data-wp-on--click="actions.toggleVisibility"
+			data-wp-bind--aria-expanded="state.isVisible"
+			data-wp-text="state.visibilityText"
+			aria-controls="status-paragraph"
+		>
+			show
+		</button>
+		<button
+			data-wp-on--click="actions.toggleActivation"
+			data-wp-bind--disabled="!state.isVisible"
+			data-wp-text="state.activationText"
+		>
+			activate
+		</button>
+		<p
+			id="status-paragraph"
+			data-wp-bind--hidden="!state.isVisible"
+			data-wp-class--active="state.isActive"
+			data-wp-class--inactive="!state.isActive"
+			data-wp-text="state.paragraphText"
+		>
+			this is inactive
+		</p>
+	</div>
+
+
 </div>
 
 
 <a target="_blank" href="https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/core-concepts/">Interactive API</a>
 
 <script type="module" src="./build/view-module.js"></script>
+<script type="module" src="./build/view-module-2.js"></script>
 </body>
 </html>
