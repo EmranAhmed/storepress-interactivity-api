@@ -19,16 +19,26 @@
 
 <body>
 
+
+<h1 id="what-count"></h1>
+
+
 <div class="wrapper">
-	<div data-wp-interactive="counter" data-wp-context='{"count": 1}'>
+	<div data-wp-interactive="counter" data-wp-context='{"count": 1}' data-wp-watch="callbacks.logCounter">
 		<button data-wp-on-async--click="actions.decrement">-</button>
 		<span data-wp-text="state.count">1</span>
 		<span data-wp-text="state.count2">0</span>
 		<button data-wp-on-async--click="actions.increment">+</button>
+
+
 	</div>
 
 
 	<div id="my-interactive-plugin" data-wp-interactive="myInteractivePlugin">
+
+
+		<span data-wp-text="counter::state.count2"></span>
+
 		<button
 			data-wp-on-async--click="actions.toggleVisibility"
 			data-wp-bind--aria-expanded="state.isVisible"
@@ -57,8 +67,6 @@
 			this is inactive
 		</p>
 	</div>
-
-
 </div>
 
 

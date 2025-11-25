@@ -21,6 +21,17 @@ const { state } = store('counter', {
 			state.count2--
 		},
 	},
+	callbacks: {
+		logCounter: () => {
+			const context = getContext();
+			//console.log( `The counter is now: ${ context.counter }` );
+
+			console.log('logCounter', context.count)
+
+
+			document.getElementById('what-count').textContent = context.count
+		},
+	},
 })
 
 // Initialize
