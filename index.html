@@ -6,15 +6,18 @@
 	<title>HTML Only Interactive API</title>
 	<link rel="stylesheet" href="./build/style-view-module-2.css" />
 
-	<script type="importmap">
+	<!--
+	- https://weston.ruter.net/2025/05/26/improve-lcp-by-deprioritizing-interactivity-api-script-modules/
+
+	-->
+	<script type="importmap" id="wp-importmap">
 		{
 		  "imports": {
 			"@wordpress/interactivity": "./build/wp-interactivity.js"
 		  }
 		}
 	</script>
-	<link rel="modulepreload" href="./build/wp-interactivity.js" />
-
+	<link fetchpriority="low" rel="modulepreload" href="./build/wp-interactivity.js" />
 </head>
 
 <body>
@@ -29,8 +32,6 @@
 		<span data-wp-text="state.count">1</span>
 		<span data-wp-text="state.count2">0</span>
 		<button data-wp-on-async--click="actions.increment">+</button>
-
-
 	</div>
 
 
@@ -72,7 +73,7 @@
 
 <a target="_blank" href="https://developer.wordpress.org/block-editor/reference-guides/interactivity-api/core-concepts/">Interactive API</a>
 
-<script type="module" src="./build/view-module.js"></script>
-<script type="module" src="./build/view-module-2.js"></script>
+<script type="module" src="./build/view-module.js" fetchpriority="low"></script>
+<script type="module" src="./build/view-module-2.js" fetchpriority="low"></script>
 </body>
 </html>
